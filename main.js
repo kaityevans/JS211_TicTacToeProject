@@ -34,24 +34,73 @@ const printBoard = () => {
 
 const horizontalWin = () => {
   // Your code here to check for horizontal wins
+  if((board[0][0] == "X" && board[0][1] == "X" && board[0][2] == "X") 
+  || (board[0][0] == "O" && board[0][1] == "O" && board[0][2] == "O")
+  || (board[1][0] == "X" && board[1][1] == "X" && board[1][2] == "X") 
+  || (board[1][0] == "O" && board[1][1] == "O" && board[1][2] == "O")
+  || (board[2][0] == "X" && board[2][1] == "X" && board[2][2] == "X") 
+  || (board[2][0] == "O" && board[2][1] == "O" && board[2][2] == "O")
+){
+  console.log("horizontalWin")
+  return true
 }
+  
+}
+  // Your code here to check for horizontal wins
 
 const verticalWin = () => {
+  if((board[0][0] == "X" && board[1][0] == "X" && board[2][0] == "X") 
+  || (board[0][0] == "O" && board[1][0] == "O" && board[2][0] == "O")
+  || (board[0][1] == "X" && board[1][1] == "X" && board[2][1] == "X") 
+  || (board[0][1] == "O" && board[1][1] == "O" && board[2][1] == "O")
+  || (board[0][2] == "X" && board[1][2] == "X" && board[2][2] == "X") 
+  || (board[0][2] == "O" && board[1][2] == "O" && board[2][2] == "O")
+){
+  console.log("verticalWin")
+  return true
+}
   // Your code here to check for vertical wins
 }
 
 const diagonalWin = () => {
+  console.log('(board[0][0] == "X" && board[1][1] == "X" && board[2][2] == "X")',(board[0][0] == "X" && board[1][1] == "X" && board[2][2] == "X"))
+  if((board[0][0] == "X" && board[1][1] == "X" && board[2][2] == "X") 
+  || (board[0][0] == "O" && board[1][1] == "O" && board[2][2] == "O")
+  || (board[0][2] == "X" && board[1][1] == "X" && board[2][0] == "X")
+  || (board[0][2] == "O" && board[1][1] == "O" && board[2][0] == "O")
+){
+  console.log("diagonalWin")
+  return true
+}
   // Your code here to check for diagonal wins
 }
 
 const checkForWin = () => {
-  // Your code here call each of the check for types of wins
+  if(horizontalWin() || verticalWin() || diagonalWin()) {
+    window.alert(`Player ${currentMarker} won!`)
+  } else {
+    changeMarker()
+  }
 }
+  // Your code here call each of the check for types of wins
 
 const ticTacToe = (row, column) => {
+  const squares = document.getElementsByTagName("TD")  
+
+  // loops over the HTML Collection of TDs and clears out the Xs and Os
+  for (i=0; i < squares.length; i++) {
+
+    // will log out the id of each square as it loops over them.
+    console.log(squares[i].id)
+
+    // sets the innerHTML to null to replace the "X" or "O"
+    squares[i].innerHTML = null
+  }  
+  currentMarker = 'X'
+  board = [["", "", ""], ["", "", ""], [ "", "", ""]]
+}
   // Your code here to place a marker on the board
   // then check for a win
-}
 
 const getPrompt = () => {
   printBoard();
