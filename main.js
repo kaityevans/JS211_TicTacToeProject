@@ -77,27 +77,26 @@ const diagonalWin = () => {
 
 const checkForWin = () => {
   if(horizontalWin() || verticalWin() || diagonalWin()) {
-    window.alert(`Player ${currentMarker} won!`)
+    // window.alert(`Player ${playerTurn} won!`)
+    return true
   } else {
-    changeMarker()
+    return false
   }
 }
   // Your code here call each of the check for types of wins
 
 const ticTacToe = (row, column) => {
-  const squares = document.getElementsByTagName("TD")  
-
-  // loops over the HTML Collection of TDs and clears out the Xs and Os
-  for (i=0; i < squares.length; i++) {
-
-    // will log out the id of each square as it loops over them.
-    console.log(squares[i].id)
-
-    // sets the innerHTML to null to replace the "X" or "O"
-    squares[i].innerHTML = null
-  }  
-  currentMarker = 'X'
-  board = [["", "", ""], ["", "", ""], [ "", "", ""]]
+  if(board[row][column] == " ") {
+    board[row][column] = playerTurn
+  }
+  if(checkForWin()) {
+    return true
+  } 
+  if(playerTurn == "X") {
+    playerTurn = "O"
+  }else {
+    playerTurn = "X"
+  }
 }
   // Your code here to place a marker on the board
   // then check for a win
